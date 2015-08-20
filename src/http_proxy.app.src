@@ -1,0 +1,18 @@
+%%% -*- mode: erlang -*-
+
+{application, http_proxy,
+	[{description, "HTTP Proxy"},
+		{vsn, "1.0.0"},
+		{modules, []},
+		{registered, [http_proxy_sup, http_proxy_origin_pool_sup]},
+		{applications, [kernel, stdlib]},
+		{env, [{proxy, []}, {origin, [{pool_size, 1}]}]},
+				% {proxy, ProxySpecs}
+				% ProxySpecs = [{Port, [ProxyOption]}]
+				% 		Port :: non_neg_integer(),
+				%		ProxyOption :: http_proxy:http_proxy_option()
+				% 			| gen_tcp:listen_option(),
+				% {origin, [OriginOption]}
+				%		OriginOption :: http_proxy:http_origin_option()
+				% 			| gen_tcp:connect_option(),
+		{mod, {http_proxy_app, []}}]}.
